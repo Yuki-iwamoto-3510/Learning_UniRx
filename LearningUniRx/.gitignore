@@ -8,6 +8,7 @@ mock/MiniGames/ProjectSettings/ProjectVersion.txt
 ~$*.xlsx.meta
 resource-unencrypted
 Tmp/*
+*.log
 
 # ----[ Visual Studio / MonoDevelop generated / Rider ]------- #
 .vs/
