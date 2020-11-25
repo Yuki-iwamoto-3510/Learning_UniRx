@@ -1,10 +1,10 @@
-Observable.Return
-Observable.Timer
-Observabe.TimerFrame
-Observabe.FromEvent
+済Observable.Timer
+済Observable.TimerFrame
+Observable.FromEvent
 Throttle
 ThrtottleFrame
 ThrottleFirst
 ThrottleFirstFrame
 Where
 Retry
+Publish
