@@ -12,21 +12,26 @@ public class TestUniRx : MonoBehaviour
     private int countTimer = 0;
     private int countTimerFrame = 0;
 
+    [SerializeField] Button button = default;
+    [SerializeField] Button button2 = default;
+
     void Start()
     {
         countTimer = 0;
         countTimerFrame = 0;
 
+
+
         // Observable.Timer/Observabe.TimerFrame
-        SubscribeTimer();
+        UniRx_Timer_TimerFrame();
     }
 
+    #region Observable.Timer/Observabe.TimerFrame
     /// <summary>
     /// Observable.Timer/Observabe.TimerFrame
     /// </summary>
-    private void SubscribeTimer()
+    private void UniRx_Timer_TimerFrame()
     {
-#if true
         //* 一定時間後に処理を実行 *//
 
         // 3秒後にカウントを1つ増やす
@@ -36,7 +41,13 @@ public class TestUniRx : MonoBehaviour
         // 30フレーム後にカウントを1つ増やす
         Observable.TimerFrame(30)
             .Subscribe((_) => CountUpTimerFrame());
-#else
+    }
+
+    /// <summary>
+    /// Observable.Timer/Observabe.TimerFrame
+    /// </summary>
+    private void UniRx_Timer_TimerFrame_Interval()
+    {
         //* 一定間隔で処理を実行 *//
 
         // 3秒後に1秒間隔のカウント増加を開始
@@ -46,8 +57,36 @@ public class TestUniRx : MonoBehaviour
         // 30フレーム後に20フレーム間隔のカウント増加を開始
         Observable.TimerFrame(30, 20)
             .Subscribe((_) => CountUpTimerFrame());
-#endif
     }
+    #endregion
+
+    #region ThrottleFirst/ThrottleFirstFrame
+
+    /// <summary>
+    /// Observable.ThrottleFirst/Observable.ThrottleFirstFrame
+    /// </summary>
+    private void UniRx_ThrottleFirst_ThrottleFirstFrame()
+    {
+        //* 指定した時間通知を弾く *//
+        
+        // 1度押下してから0.5秒間は押下を受け付けない
+        button.OnClickAsObservable()
+        .ThrottleFirst(TimeSpan.FromSeconds(0.5f))
+        .Subscribe((_) => 
+        {
+            Debug.Log("Push");
+        });
+
+        // 1度押下してから30フレームは押下を受け付けない
+        button2.OnClickAsObservable()
+        .ThrottleFirstFrame(30)
+        .Subscribe((_) =>
+        {
+            Debug.Log("Push");
+        });
+    }
+
+    #endregion
 
     private void CountUpTimer()
     {
