@@ -1,4 +1,4 @@
-■今回は時間に絡んだオペレータであるObservable.TimerとObservabe.TimerFrameについて学ぶ
+■今回はObservable.TimerとObservabe.TimerFrameについて学ぶ
 どちらも「一定時間後に処理を実行」「一定間隔で処理を実行」というような、
 ゲームにおいて多用される挙動を実現できる。
 両者の違いは指定する物が「秒数」か「フレーム」となっている。
@@ -11,10 +11,12 @@
     private int countTimer = 0;
     private int countTimerFrame = 0;
 
-    void Start()
+    /// <summary>
+    /// Observable.Timer/Observabe.TimerFrame
+    /// </summary>
+    private void UniRx_Timer_TimerFrame()
     {
-        countTimer = 0;
-        countTimerFrame = 0;
+        //* 一定時間後に処理を実行 *//
 
         // 3秒後にカウントを1つ増やす
         Observable.Timer(TimeSpan.FromSeconds(3.0f))
@@ -40,8 +42,13 @@
 
 ■一定間隔で処理を実行
 
-    void Start()
+    /// <summary>
+    /// Observable.Timer/Observabe.TimerFrame
+    /// </summary>
+    private void UniRx_Timer_TimerFrame_Interval()
     {
+        //* 一定間隔で処理を実行 *//
+
         // 3秒後に1秒間隔のカウント増加を開始
         Observable.Timer(TimeSpan.FromSeconds(3.0f), TimeSpan.FromSeconds(1.0f))
             .Subscribe((_) => CountUpTimer());

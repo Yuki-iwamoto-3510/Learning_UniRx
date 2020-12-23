@@ -1,0 +1,30 @@
+■今回はThrottleFirstとThrottleFirstFrameについて学ぶ
+どちらも例えば「ボタンの連打を一定時間防ぐ」というような処理に使える。
+両者の違いは指定する物が「秒数」か「フレーム」となっている。
+
+
+■指定した時間通知を弾く処理
+
+    /// <summary>
+    /// Observable.ThrottleFirst/Observable.ThrottleFirstFrame
+    /// </summary>
+    private void UniRx_ThrottleFirst_ThrottleFirstFrame()
+    {
+        //* 指定した時間通知を弾く *//
+        
+        // 1度押下してから0.5秒間は押下を受け付けない
+        button.OnClickAsObservable()
+        .ThrottleFirst(TimeSpan.FromSeconds(0.5f))
+        .Subscribe((_) => 
+        {
+            Debug.Log("Push");
+        });
+
+        // 1度押下してから30フレームは押下を受け付けない
+        button2.OnClickAsObservable()
+        .ThrottleFirstFrame(30)
+        .Subscribe((_) =>
+        {
+            Debug.Log("Push");
+        });
+    }
