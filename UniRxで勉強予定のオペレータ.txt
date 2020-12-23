@@ -1,10 +1,10 @@
 済Observable.Timer
 済Observable.TimerFrame
 Observable.FromEvent
-Throttle
-ThrtottleFrame
-ThrottleFirst
-ThrottleFirstFrame
+Throttle　　　　　　　　※ThrottleFirstなどとほぼ同じなので手抜きに思われるかも。変える？
+ThrtottleFrame　　　　　※ThrottleFirstなどとほぼ同じなので手抜きに思われるかも。変える？
+済ThrottleFirst
+済ThrottleFirstFrame
 Where
 Retry
 Publish
