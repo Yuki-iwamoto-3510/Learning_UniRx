@@ -1,0 +1,26 @@
+■今回はReturnとWhereについて学ぶ
+Returnは設定された値を一度だけ流し込む機能。
+ちょっとした動作確認などをしたい時に有用。
+
+Whereは所謂「フィルター」としての機能。
+例えば「装備画面で装備中のアイコンのみハイライトする」というような制御ができる。
+
+
+
+■Returnにて指定された値の中で、偶数だけログ出力する処理
+
+    /// <summary>
+    /// Observable.Return/Observable.Where
+    /// </summary>
+    private void UniRx_Return_Where()
+    {
+        int[] numList = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+
+        // 偶数の値のみログ出力
+        foreach(var num in numList)
+        {
+            Observable.Return(num)
+                .Where(num => num % 2 == 0)
+                .Subscribe(num => Debug.Log(num));
+        }
+    }

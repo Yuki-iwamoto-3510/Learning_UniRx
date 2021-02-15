@@ -14,6 +14,7 @@ public class TestUniRx : MonoBehaviour
 
     [SerializeField] Button button = default;
     [SerializeField] Button button2 = default;
+    [SerializeField] Button button3 = default;
 
     void Start()
     {
@@ -84,6 +85,54 @@ public class TestUniRx : MonoBehaviour
         {
             Debug.Log("Push");
         });
+    }
+
+    #endregion
+
+    #region Return/Where
+
+    /// <summary>
+    /// Observable.Return/Observable.Where
+    /// </summary>
+    private void UniRx_Return_Where()
+    {
+        int[] numList = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+
+        // 偶数の値のみログ出力
+        foreach(var num in numList)
+        {
+            Observable.Return(num)
+                .Where(num => num % 2 == 0)
+                .Subscribe(num => Debug.Log(num));
+        }
+    }
+
+    #endregion
+
+    #region TakeWhile/First
+
+    /// <summary>
+    /// Observable.TakeWhile
+    /// </summary>
+    private void UniRx_TakeWhile()
+    {
+        int count = 100;
+
+        // カウントが0になるまで、1秒毎に1つ減少させる
+        Observable.Timer(TimeSpan.FromSeconds(0.0f), TimeSpan.FromSeconds(1.0f))
+            .TakeWhile(_ => count > 0)
+            .Subscribe(_ => count--);
+    }
+
+    /// <summary>
+    /// Observable.First
+    /// </summary>
+    private void UniRx_First()
+    {
+        // 一度しか押下できないボタン
+        button3.OnClickAsObservable()
+            .First()
+            .Subscribe(_ => Debug.Log("Push"));
     }
 
     #endregion

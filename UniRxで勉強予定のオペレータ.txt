@@ -5,6 +5,9 @@ Throttle　　　　　　　　※ThrottleFirstなどとほぼ同じなので�
 ThrtottleFrame　　　　　※ThrottleFirstなどとほぼ同じなので手抜きに思われるかも。変える？
 済ThrottleFirst
 済ThrottleFirstFrame
-Where
+済Where
+済Return
+済TakeWhile
+済First
 Retry
 Publish

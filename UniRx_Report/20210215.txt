@@ -1,0 +1,36 @@
+■今回はTakeWhileとFirstについて学ぶ
+TakeWhileは指定した条件が真である間、値を流し続ける機能。
+例えば「HPが残っている間、動き続ける」といった制御が可能。
+
+Firstは最初の一度だけ処理を実行する機能。
+例えば「一度しか押下されて欲しくない重要なボタン」を取り扱うのに有用。
+
+
+■カウントが0になるまで、1秒毎に1つ減少させる処理
+
+    /// <summary>
+    /// Observable.TakeWhile
+    /// </summary>
+    private void UniRx_TakeWhile()
+    {
+        int count = 100;
+
+        // カウントが0になるまで、1秒毎に1つ減少させる
+        Observable.Timer(TimeSpan.FromSeconds(0.0f), TimeSpan.FromSeconds(1.0f))
+            .TakeWhile(_ => count > 0)
+            .Subscribe(_ => count--);
+    }
+
+
+■一度しか押下できないボタン
+
+    /// <summary>
+    /// Observable.First
+    /// </summary>
+    private void UniRx_First()
+    {
+        // 一度しか押下できないボタン
+        button3.OnClickAsObservable()
+            .First()
+            .Subscribe(_ => Debug.Log("Push"));
+    }
